@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+*{margin:0;padding:0}
+body{width:100%;height:100%;background:#000;}
+#canvas1{background:#fff;margin:10px;}
+</style>
+<script>
+window.onload=function(){
+	var c1=document.getElementById('canvas1');
+	var oGC=c1.getContext('2d'); //webgl :3D绘图 2d绘图
+	
+	c1.onmousedown=function(ev){
+		var ev=ev||window.event;
+		var Disx=ev.clientX-c1.offsetLeft;
+		var Disy=ev.clientY-c1.offsetTop;
+		console.log(Disx);
+		console.log(Disy)
+		//oGC.beginPath();
+		oGC.lineWidth=2;//线宽
+		oGC.strokeStyle='#f00'//线的颜色
+		oGC.moveTo(Disx,Disy);
+		document.onmousemove=function(ev){
+			var ev=ev||window.event;
+			var Nowx=ev.clientX-c1.offsetLeft;
+			var Nowy=ev.clientY-c1.offsetTop;
+			oGC.lineTo(Nowx,Nowy);
+			oGC.stroke();
+		}
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;	
+		}
+		
+	}
+	
+	
+}
+</script>
+<body>
+<canvas id="canvas1" width="800" height="800">
+请更新您的浏览器到IE9以上！
+默认宽300  高150
+</canvas>
+</body>
+</html>
